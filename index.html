@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forex Pip & Profit Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>📊 Forex Pip & Profit Calculator</h1>
+      <p>Enter your trade details manually – works for any pair & account currency.</p>
+    </header>
+
+    <!-- ========== SECTION 1: PIP & PROFIT ========== -->
+    <section class="card">
+      <h2>📈 Pip & Profit</h2>
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="pair">Currency Pair</label>
+          <select id="pair">
+            <option value="EURUSD">EUR/USD</option>
+            <option value="GBPUSD">GBP/USD</option>
+            <option value="USDJPY">USD/JPY</option>
+            <option value="AUDUSD">AUD/USD</option>
+            <option value="USDCAD">USD/CAD</option>
+            <option value="USDCHF">USD/CHF</option>
+            <option value="NZDUSD">NZD/USD</option>
+            <option value="EURGBP">EUR/GBP</option>
+            <option value="EURJPY">EUR/JPY</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="lotSize">Trade Size (Lots)</label>
+          <input type="number" id="lotSize" step="0.01" min="0" value="1.00" />
+          <span class="hint">1 lot = 100,000 units</span>
+        </div>
+
+        <div class="form-group">
+          <label for="accountCurrency">Account Currency</label>
+          <select id="accountCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="CHF">CHF</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+            <option value="NZD">NZD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="entryPrice">Entry Price</label>
+          <input type="number" id="entryPrice" step="any" value="1.1000" />
+        </div>
+
+        <div class="form-group">
+          <label for="exitPrice">Exit Price (or Current Price)</label>
+          <input type="number" id="exitPrice" step="any" value="1.1050" />
+        </div>
+
+        <div class="form-group">
+          <label for="conversionRate">
+            Conversion Rate <span class="hint">(1 Quote Currency = ? Account Currency)</span>
+          </label>
+          <input type="number" id="conversionRate" step="any" value="1.0000" />
+          <span class="hint" id="rateHint">e.g. EUR/USD + Account EUR → 1 USD = 0.909 EUR</span>
+        </div>
+      </div>
+
+      <div class="results" id="profitResults">
+        <div class="result-item">
+          <span class="result-label">📏 Pip Difference</span>
+          <span class="result-value" id="pipDiff">—</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">💰 Pip Value (per lot)</span>
+          <span class="result-value" id="pipValue">—</span>
+        </div>
+        <div class="result-item highlight">
+          <span class="result-label">💵 Total Profit / Loss</span>
+          <span class="result-value" id="totalPnL">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: POSITION SIZING ========== -->
+    <section class="card">
+      <h2>⚖️ Position Size (Risk Management)</h2>
+      <p class="subtitle">Find the ideal lot size based on your risk tolerance and stop‑loss.</p>
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="balance">Account Balance (in Account Currency)</label>
+          <input type="number" id="balance" step="any" value="10000" />
+        </div>
+
+        <div class="form-group">
+          <label for="riskPercent">Risk Per Trade (%)</label>
+          <input type="number" id="riskPercent" step="0.1" min="0" value="1.0" />
+        </div>
+
+        <div class="form-group">
+          <label for="stopLossPips">Stop Loss (in pips)</label>
+          <input type="number" id="stopLossPips" step="any" min="0" value="50" />
+        </div>
+      </div>
+
+      <div class="results" id="sizingResults">
+        <div class="result-item highlight">
+          <span class="result-label">📦 Recommended Lot Size</span>
+          <span class="result-value" id="recommendedLots">—</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">⛔ Max Risk Amount</span>
+          <span class="result-value" id="riskAmount">—</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Prices are manual inputs. Always verify with your broker.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
