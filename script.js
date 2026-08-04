@@ -23,7 +23,11 @@ const riskAmountEl = document.getElementById('riskAmount');
 //  Helpers
 // ----------------------------------------------
 function getPipSize(pair) {
-  return pair.endsWith('JPY') ? 0.01 : 0.0001;
+  // JPY pairs and XAUUSD (Gold) use 0.01 as 1 pip
+  if (pair.endsWith('JPY') || pair === 'XAUUSD') {
+    return 0.01;
+  }
+  return 0.0001;
 }
 
 function getQuoteCurrency(pair) {
